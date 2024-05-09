@@ -6,7 +6,7 @@
 #    By: skarim <skarim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 17:45:23 by skarim            #+#    #+#              #
-#    Updated: 2024/05/05 11:30:02 by skarim           ###   ########.fr        #
+#    Updated: 2024/05/09 16:13:40 by skarim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,4 +30,6 @@ clean:
 fclean:	clean
 	rm -rf $(NAME)
 
-.PHONY: all clean re
+re : fclean all
+
+.PHONY: clean
