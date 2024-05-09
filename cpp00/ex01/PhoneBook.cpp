@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 11:31:04 by skarim            #+#    #+#             */
-/*   Updated: 2024/05/07 20:44:37 by skarim           ###   ########.fr       */
+/*   Updated: 2024/05/09 16:18:59 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,53 +44,68 @@ int		isWhiteSpaces(std::string str)
 	while (str[i])
 	{
 		if ((str[i] < 9 || str[i] > 13) && str[i] != ' ')
-			return (1);
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 void PhoneBook::addContact() {
     Contact cnt;
     std::string tmp;
 
-    std::cout << "Enter the first name: ";
-    do {
-        if (!getline(std::cin, tmp))
+	while (true)
+	{
+		std::cout << "Enter the first name: ";
+		if (!getline(std::cin, tmp))
 			return ;
-    } while (tmp.empty() || !isWhiteSpaces(tmp));
+		if (!tmp.empty() && !isWhiteSpaces(tmp))
+			break;
+	}
     cnt.setFirstName(tmp);
 
-    std::cout << "Enter the last name: ";
-    do {
-        if (!getline(std::cin, tmp))
+	while (true)
+	{
+		std::cout << "Enter the last name: ";
+		if (!getline(std::cin, tmp))
 			return ;
-    } while (tmp.empty() || !isWhiteSpaces(tmp));
+		if (!tmp.empty() && !isWhiteSpaces(tmp))
+			break;
+	}
     cnt.setLastName(tmp);
 
-    std::cout << "Enter the nickname: ";
-    do {
-        if (!getline(std::cin, tmp))
+	while (true)
+	{
+		std::cout << "Enter the nickname: ";
+		if (!getline(std::cin, tmp))
 			return ;
-    } while (tmp.empty() || !isWhiteSpaces(tmp));
+		if (!tmp.empty() && !isWhiteSpaces(tmp))
+			break;
+	}
     cnt.setNickName(tmp);
 
-    std::cout << "Enter the phone number: ";
-    do {
-        if (!getline(std::cin, tmp))
+	while (true)
+	{
+		std::cout << "Enter the phone number: ";
+		if (!getline(std::cin, tmp))
 			return ;
-        if (!isValidNumber(tmp)) {
+		if (!isValidNumber(tmp)) {
             std::cout << "Phone number must be fully composed of numbers" << std::endl;
             tmp.clear();
         }
-    } while (tmp.empty() || !isWhiteSpaces(tmp));
+		if (!tmp.empty() && !isWhiteSpaces(tmp))
+			break;
+	}
     cnt.setPhoneNumber(tmp);
 
-    std::cout << "Enter the darkest secret: ";
-    do {
-        if (!getline(std::cin, tmp))
+	while (true)
+	{
+		std::cout << "Enter the darkest secret: ";
+		if (!getline(std::cin, tmp))
 			return ;
-    } while (tmp.empty() || !isWhiteSpaces(tmp));
+		if (!tmp.empty() && !isWhiteSpaces(tmp))
+			break;
+	}
     cnt.setDarkestSecret(tmp);
 
     this->contacts[this->contactsNbr % 8] = cnt;
@@ -133,10 +148,10 @@ void	PhoneBook::searchContact()
 	this->display();
 	while (1)
 	{
-		std::cout << "Enter the index to display its contact: " << std::endl;
+		std::cout << "Enter the index to display its contact: ";
 		if (!getline(std::cin, input))
 			exit(1);
-		if (!isValidNumber(input) || input.empty() || !isWhiteSpaces(input))
+		if (!isValidNumber(input) || input.empty() || isWhiteSpaces(input))
 			std::cout << "Invalid input, ";
 		else
 			break ;
@@ -147,10 +162,11 @@ void	PhoneBook::searchContact()
 		std::cout << "The index is out of range!" << std::endl;
 	else
 	{
-		std::cout << std::right << std::setw(10) << index << " | ";
-        displayString(contacts[index].getFirstName());
-        displayString(contacts[index].getLastName());
-        displayString(contacts[index].getNickName());
-		std::cout << std::endl;
+		std::cout << "The index: " << index << std::endl;
+		std::cout << "The first name: " << contacts[index].getFirstName() << std::endl;
+		std::cout << "The last name: " << contacts[index].getLastName() << std::endl;
+		std::cout << "The nick name: " << contacts[index].getNickName() << std::endl;
+		std::cout << "The phone number: " << contacts[index].getPhoneNumber() << std::endl;
+		std::cout << "The darkest secret: " << contacts[index].getDarkestSecret() << std::endl;
 	}
 }
