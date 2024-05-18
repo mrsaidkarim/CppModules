@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 12:58:27 by skarim            #+#    #+#             */
-/*   Updated: 2024/05/11 17:39:40 by skarim           ###   ########.fr       */
+/*   Updated: 2024/05/18 16:21:05 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(void)
 {
-	int N = 1;
+	int N = 4;
 	Zombie* horde = zombieHorde(N, "test");
 	
 	if (horde == nullptr)
