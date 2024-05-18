@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 13:20:17 by skarim            #+#    #+#             */
-/*   Updated: 2024/05/13 21:25:07 by skarim           ###   ########.fr       */
+/*   Updated: 2024/05/18 16:39:31 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ HumanA::~HumanA()
 	
 }
 
-void HumanA::attack()
+void HumanA::attack() const
 {
 	std::cout << this->name << " attacks with their " << this->w.getType() << std::endl;
 }
