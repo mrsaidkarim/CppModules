@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:10:35 by skarim            #+#    #+#             */
-/*   Updated: 2024/05/10 12:34:56 by skarim           ###   ########.fr       */
+/*   Updated: 2024/05/18 16:17:28 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ class Zombie
 	public:
 		Zombie();
 		~Zombie();
-		void		announce(void);
-		std::string	getName();
-		void		setName(std::string name);
+		void		announce(void) const;
+		const std::string& 	getName() const;
+		void		setName(const std::string& name);
 };
 
 Zombie* newZombie(std::string name);

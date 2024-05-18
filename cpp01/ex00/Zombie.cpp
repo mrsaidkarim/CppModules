@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:24:17 by skarim            #+#    #+#             */
-/*   Updated: 2024/05/10 11:49:35 by skarim           ###   ########.fr       */
+/*   Updated: 2024/05/18 15:54:54 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Zombie::Zombie()
 {
-	
+	this->name = "defaultName";
 }
 
 Zombie::~Zombie()
@@ -22,17 +22,17 @@ Zombie::~Zombie()
 	std::cout << "The zombie " << this->name << " destroyed!" << std::endl;
 }
 
-void	Zombie::announce(void)
+void	Zombie::announce(void) const
 {
 	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-std::string	Zombie::getName()
+const std::string& 	Zombie::getName() const
 {
 	return (this->name);
 }
 
-void	Zombie::setName(std::string name)
+void	Zombie::setName(const std::string& name)
 {
 	this->name = name;
 }
