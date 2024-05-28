@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:35:05 by skarim            #+#    #+#             */
-/*   Updated: 2024/05/23 18:06:07 by skarim           ###   ########.fr       */
+/*   Updated: 2024/05/28 15:09:07 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Fixed
 {
 	private:
 		int					fixedPointValue;
-		static const int	fractionalBits = 8;
+		static const int	fractionalBits;
 	public:
 		Fixed();
 		Fixed(const int nbr);
