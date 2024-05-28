@@ -91,3 +91,20 @@ Using a custom copy assignment operator is essential in classes that manage dyna
 
 ## Floating and fixed point representation in C++
 Fixed-point representation is a real data type for integers in computers. Data can be converted into binary form using fixed point representation, which the computer can store and use.
+
+## Comparison Table
+
+| Feature                | Fixed-Point                              | Floating-Point                           |
+|------------------------|------------------------------------------|------------------------------------------|
+| **Representation**     | Integer with a fixed scaling factor      | Sign, exponent, and mantissa             |
+| **Precision**          | Fixed (constant number of fractional bits)| Variable (depends on exponent)           |
+| **Range**              | Limited                                  | Very wide                               |
+| **Arithmetic**         | Simple and fast                          | Complex and slower                      |
+| **Use Cases**          | Embedded systems, DSP                    | General-purpose computing               |
+| **Implementation Cost**| Low                                      | High                                    |
+
+
+- Fixed-Point: Best for applications requiring fast, predictable, and simple arithmetic with fixed precision. Limited range and precision.
+- Floating-Point: Best for applications requiring a wide range of representable numbers with variable precision. More complex and slower operations.
+
+Both fixed-point and floating-point representations are essential for handling fractional numbers in computing. The choice between them depends on the specific requirements of the application, such as the need for performance, precision, range, and predictability.
