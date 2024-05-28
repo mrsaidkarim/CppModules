@@ -5,21 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/26 12:08:13 by skarim            #+#    #+#             */
-/*   Updated: 2024/05/26 12:08:19 by skarim           ###   ########.fr       */
+/*   Created: 2024/05/24 11:09:39 by skarim            #+#    #+#             */
+/*   Updated: 2024/05/28 17:35:47 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
+const int Fixed::fractionalBits = 8;
+
 Fixed::Fixed() : fixedPointValue(0)
 {
 }
 
-Fixed::Fixed(const Fixed &f)
-{
-	*this = f;
-}
+Fixed::Fixed(const Fixed &f) : fixedPointValue(f.fixedPointValue)
+{}
 
 Fixed::Fixed(const int nbr)
 {
@@ -72,17 +72,17 @@ bool Fixed::operator!=(const Fixed &f) const
 
 Fixed Fixed::operator+(const Fixed &f) const
 {
-	return Fixed(this->toFloat() + f.toFloat());
+	return Fixed((float)(this->fixedPointValue + f.fixedPointValue) / (1 << this->fractionalBits));
 }
 
 Fixed Fixed::operator-(const Fixed &f) const
 {
-	return Fixed(this->toFloat() - f.toFloat());
+	return Fixed((float)(this->fixedPointValue - f.fixedPointValue) / (1 << this->fractionalBits));
 }
 
 Fixed Fixed::operator*(const Fixed &f) const
 {
-	return Fixed(this->toFloat() * f.toFloat());
+	return Fixed((float)(this->fixedPointValue * f.fixedPointValue) / ((1 << this->fractionalBits) * (1 << this->fractionalBits)));
 }
 
 Fixed Fixed::operator/(const Fixed &f) const
@@ -92,7 +92,7 @@ Fixed Fixed::operator/(const Fixed &f) const
 		std::cout << "Division by zero" << std::endl;
 		exit(1);
 	}
-	return Fixed(this->toFloat() / f.toFloat());
+	return Fixed((float)this->fixedPointValue / f.fixedPointValue);
 }
 
 Fixed &Fixed::operator++(void)

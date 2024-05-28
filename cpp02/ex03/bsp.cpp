@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:16:05 by skarim            #+#    #+#             */
-/*   Updated: 2024/05/26 18:33:18 by skarim           ###   ########.fr       */
+/*   Updated: 2024/05/28 15:37:54 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
 	pab = triangleArea(point, a, b);
 	pbc = triangleArea(point, b, c);
 	pca = triangleArea(point, c, a);
+	if (pab == 0 || pbc == 0 || pca == 0)
+		return (false);
 	return (abc == pab + pbc + pca);
 }
