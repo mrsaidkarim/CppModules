@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:43:57 by skarim            #+#    #+#             */
-/*   Updated: 2024/05/31 15:03:28 by skarim           ###   ########.fr       */
+/*   Updated: 2024/06/03 15:55:18 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name)
 	std::cout << "Parameterized constructor called for ScavTrap" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
+ScavTrap::ScavTrap(const ScavTrap &other)
 {
 	std::cout << "Copy constructor called for ScavTrap" << std::endl;
 	*this = other;
@@ -66,8 +66,8 @@ void ScavTrap::attack(const std::string& target)
 		energyPoints--;
 	}
 }
-		
-void ScavTrap::guardGate()
+
+void ScavTrap::guardGate() const 
 {
 	std::cout << "ScavTrap " << name << " is now in Gate keeper mode" << std::endl;
 }
