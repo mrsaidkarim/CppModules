@@ -9,7 +9,7 @@ The word “polymorphism” means having many forms. In simple words, we can def
 
 *Function Overriding* occurs in the context of inheritance. It allows a derived class to provide a specific implementation of a method that is already defined in its base class. Overriding is resolved at runtime using dynamic binding (polymorphism).
 
-
+```
 +---------------------------------------+       +------------------+
 | class Animal {                        |       | Dog Vtable       |
 |   _vptr;                              |       +------------------+
@@ -24,6 +24,7 @@ The word “polymorphism” means having many forms. In simple words, we can def
 |   void makeSound() const override { } |       | ~Cat()           |
 | }                                     |<----->| Cat::makeSound() |
 +---------------------------------------+       +------------------+
+```
 
 ### Interface
 interfaces are implemented using abstract classes. An abstract class is a class that contains at least one pure virtual function. A pure virtual function is a function declared by placing = 0 at the end of its declaration. Abstract classes cannot be instantiated directly and are meant to be derived from by concrete classes that implement the pure virtual functions. An interface in C++ is typically defined as a class with all pure virtual functions and usually a virtual destructor to allow proper cleanup of derived class objects through base class pointers.
