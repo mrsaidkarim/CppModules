@@ -7,6 +7,6 @@ This repository contains various modules that cover different concepts in C++ pr
 - [cpp01: Initialization Lists vs Assignments, Pointers to Members](#cpp01-initialization-lists-vs-assignments-pointers-to-members)
 - [cpp02: Copy Assignment Operator vs Default Assignment Operator, Fixed and Floating Point Representation](#cpp02-copy-assignment-operator-vs-default-assignment-operator-fixed-and-floating-point-representation)
 - [cpp03: Inheritance](#cpp03-inheritance)
-- [cpp04: Polymorphism](#cpp04-polymorphism)
+- [cpp04: Polymorphism](#cpp04)
 - [cpp05: Repetition and Exceptions](#cpp05-repetition-and-exceptions)
 - [cpp06: C++ casts](#cpp06-c++-casts)
