@@ -6,13 +6,21 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 10:42:07 by skarim            #+#    #+#             */
-/*   Updated: 2024/10/29 14:29:58 by skarim           ###   ########.fr       */
+/*   Updated: 2025/03/11 03:58:26 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
+void =(a)
+{
+    this= a
+}
 
+void >>(sa_sigaction)
+{
+    return out
+}
 ScalarConverter::ScalarConverter()
 {}
 
@@ -105,39 +113,53 @@ ScalarConverter::ScalarConverter()
     
 // }
 
+Types DetectType(const std::string &s)
+{
+    char    *end;
+    double  number;
+    
+    if (std::isalpha(s[0]) && !s[1])
+        return Char;
+    number = std::strtod(s.c_str(), &end);
+    if (end[0] == 'f' && !end[1] && number <= FLT_MAX && number >= -FLT_MAX)
+        return Float;
+    else if (!end[0] && number <= INT_MAX && number >= INT_MIN)
+        return Int;
+    else if (!end[0])
+        return Double;
+    return Impossible;
+}
+
+void    PrintChar(double d)
+{
+    cout << "char: " << s[0] << endl;
+    cout << "int: " << static_cast<int>s << endl;
+    cout << "float: " << static_cast<float>s << endl;
+    cout << "double: " << static_cast<double>s << endl;
+}
+
+
 void ScalarConverter::convert(const std::string &s)
 {
-    int     ValInt;
-    float   ValFloat;
-    double  ValDouble;
-    char    ValChar;
-
-    try
+    if (s == "nan" || s == "nanf")
+        std::cout << "char: impossible\nint: impossible\nfloat: nanf\ndouble: nan\n";
+    else if (s == "+inf" || s == "+inff")
+        std::cout << "char: impossible\nint: impossible\nfloat: +inff\ndouble: +inf\n";
+    else if (s == "-inf" || s == "-inff")
+        std::cout << "char: impossible\nint: impossible\nfloat: -inff\ndouble: -inf\n";
+    else
     {
-        if (s == "nan" || s == "nanf")
-            std::cout << "char: impossible\nint: impossible\nfloat: nanf\ndouble: nan\n";
-        else if (s == "+inf" || s == "+inff")
-            std::cout << "char: impossible\nint: impossible\nfloat: +inff\ndouble: +inf\n";
-        else if (s == "-inf" || s == "-inff")
-            std::cout << "char: impossible\nint: impossible\nfloat: -inff\ndouble: -inf\n";
+        char *tmp;
+        Types type = DetectType(s);
+        if (type == Char)
+            PrintChar(strtod(s.c_str(), tmp));
+        else if (type == Float)
+            PrintFloat(strtod(s.c_str(), tmp));
+        else if (type == Int)
+            PrintInt(strtod(s.c_str(), tmp));
+        else if (type == Double)
+            PrintDouble(strtod(s.c_str(), tmp));
         else
-        {
-            ValInt = std::stoi(s);
-            ValFloat = std::stof(s);
-            ValDouble = std::stod(s);
-            ValChar = static_cast<char> (ValInt);
-            if (std::isprint(ValChar))
-                std::cout << "char: " << ValChar << "\n";
-            else
-                std::cout << "char: Non displayable\n";
-            std::cout << "int: " << ValInt << "\n";
-            std::cout << std::fixed << std::setprecision(1);
-            std::cout << "float: " << ValFloat << "f\n";
-            std::cout << "double: " << ValDouble << "\n";
-        }
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << "Conversion fails:" << e.what() << '\n';
+            PrintImpossible();
     }
 }
