@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 10:42:05 by skarim            #+#    #+#             */
-/*   Updated: 2024/10/29 13:56:48 by skarim           ###   ########.fr       */
+/*   Updated: 2025/03/11 03:07:22 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,18 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
+#include <cfloat>
+#include <ctype.h>
+
+enum Types
+{
+    Char,
+    Int,
+    Float,
+    Double,
+    Impossible    
+};
+
 class ScalarConverter
 {
     private:
