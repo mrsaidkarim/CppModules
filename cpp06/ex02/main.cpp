@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:25:53 by skarim            #+#    #+#             */
-/*   Updated: 2024/11/14 17:51:51 by skarim           ###   ########.fr       */
+/*   Updated: 2025/03/12 00:39:14 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ int main(void)
 
     identify(base);
     identify(*base);
+    delete base;
     return (0);
 }
