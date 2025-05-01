@@ -1,9 +1,9 @@
 CMD = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = main.cpp
-HDR = MutantStack.hpp
+SRC = BitcoinExchange.cpp main.cpp
+HDR = BitcoinExchange.hpp
 OBJ = ${SRC:.cpp=.o}
-NAME = a.out
+NAME = btc
 
 all: $(NAME)
 
