@@ -14,11 +14,12 @@
 #include <fstream>
 #include <map>
 #include <sstream>
+#include <cstdlib>
 
 class BitcoinExchange
 {
     private:
-        std::map<std::string, float> database;
+        std::map<std::string, float> _database;
     public:
         BitcoinExchange();
         BitcoinExchange(const BitcoinExchange &other);
@@ -26,4 +27,6 @@ class BitcoinExchange
         ~BitcoinExchange();
 
         void storeData(std::string fileName);
+        void display(std::string fileName);
+        void multipliedValue(std::string date, float value);
 };
