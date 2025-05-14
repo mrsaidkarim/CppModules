@@ -1,6 +1,6 @@
 CMD = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = PmergeMe.cpp PmergeMe.cpp
+SRC = PmergeMe.cpp main.cpp
 HDR = PmergeMe.hpp
 OBJ = ${SRC:.cpp=.o}
 NAME = PmergeMe
