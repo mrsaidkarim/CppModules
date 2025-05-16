@@ -15,6 +15,7 @@
 #include <deque>
 #include <cstdlib>
 #include <limits.h>
+#include <math.h>
 
 class PmergeMe
 {

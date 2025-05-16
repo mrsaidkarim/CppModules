@@ -116,93 +116,65 @@ void    outputdeq(std::deque<int> &dq, std::string name)
         std::cout << "\n----------------------------------------\n";
 }
 
-std::vector<int> generateJacobsthalSeq(int n)
+int sequence(int k)
 {
-        std::vector<int> jacobsthal;
-        
-        jacobsthal.push_back(0);
-        if (n == 1)
-                return jacobsthal;
-        int a = 0, b = 1, tmp;
-        while (b < n)
-        {
-                jacobsthal.push_back(b);
-                tmp = b;
-                b = b + 2 * a;
-                a = tmp;
-        }
-        output(jacobsthal, "jjjjjjjjjjjjj");
-        std::vector<int> res(n - 1);
-        res[0] = 1;
-        int prev = 0;
-        int resIndex = 1;
-        int jacobIndex = 2;
-        while (resIndex < n - 1 && jacobIndex < jacobsthal.size())
-        {
-                if (res[prev] == jacobsthal[jacobIndex])
-                        jacobIndex++;
-                else if (res[prev] + 1 < jacobsthal[jacobIndex])
-                {
-                        std::cout << "dkhal hna))))))))))))))\n";
-                        res[resIndex++] = jacobsthal[jacobIndex];
-                        for (int missed = res[prev] + 1; missed < jacobsthal[jacobIndex] && resIndex < n - 1; missed++)
-                        {
-                                res[resIndex++] = missed;
-                        }
-                        prev = resIndex;
-                        jacobIndex++;
-                }
-                else
-                {
-                        res[resIndex++] = jacobsthal[jacobIndex++];
-                        prev = resIndex;
-                }    
-        }
-        return (res);
+        if (k == 0)
+                return 1;
+        if (k == 1)
+                return 1;
+        return (int)pow(2, k) - sequence(k - 1);
 }
 
+// int jacobsthal( int n) {
+//         if (n == 0) return 0;
+//         if (n == 1) return 1;
+//         return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
+// }
 
-std::deque<int> generateJacobsthalSeqDeq(int n)
+std::vector<int> generateSeq(int n)
 {
-        std::deque<int> jacobsthal;
-        
-        jacobsthal.push_back(0);
+        std::vector<int> seq;
+        // std::cout << "call for " << n << std::endl;
+        seq.push_back(0);
         if (n == 1)
-                return jacobsthal;
-        int a = 0, b = 1, tmp;
-        while (b < n)
-        {
-                jacobsthal.push_back(b);
-                tmp = b;
-                b = b + 2 * a;
-                a = tmp;
+                return seq;
+        seq.push_back(1);
+        int index = 2;
+        int val = 0;
+        while (val < n + 1)
+        {       
+                val = sequence(index);
+                seq.push_back(val);
+                int prev = sequence(index - 1);
+                for (int missed = val - 1; missed > prev; missed--)
+                        seq.push_back(missed);
+                index++;
         }
-        std::deque<int> res(n - 1);
-        res[0] = 1;
-        int prev = 0;
-        int resIndex = 1;
-        int jacobIndex = 2;
-        while (resIndex < n - 1 && jacobIndex < jacobsthal.size())
-        {
-                if (res[prev] == jacobsthal[jacobIndex])
-                        jacobIndex++;
-                else if (res[prev] + 1 < jacobsthal[jacobIndex])
-                {
-                        res[resIndex++] = jacobsthal[jacobIndex];
-                        for (int missed = res[prev] + 1; missed < jacobsthal[jacobIndex] && resIndex < n; missed++)
-                        {
-                                res[resIndex++] = missed;
-                        }
-                        prev = resIndex;
-                        jacobIndex++;
-                }
-                else
-                {
-                        res[resIndex++] = jacobsthal[jacobIndex++];
-                        prev = resIndex;
-                }    
+        // output(seq, "seq");
+        return seq;
+}
+
+std::deque<int> generateSeqDeq(int n)
+{
+        std::deque<int> seq;
+        // std::cout << "call for " << n << std::endl;
+        seq.push_back(0);
+        if (n == 1)
+                return seq;
+        seq.push_back(1);
+        int index = 2;
+        int val = 0;
+        while (val < n + 1)
+        {       
+                val = sequence(index);
+                seq.push_back(val);
+                int prev = sequence(index - 1);
+                for (int missed = val - 1; missed > prev; missed--)
+                        seq.push_back(missed);
+                index++;
         }
-        return (res);
+        // output(seq, "seq");
+        return seq;
 }
 
 
@@ -248,20 +220,21 @@ void    PmergeMe::sortVector(std::vector<int>   &vec)
                 bigNumbers.push_back(pairs[i].first);
                 smallNumbers.push_back(pairs[i].second);
         }
-        output(bigNumbers, "bigNumbers");
-        output(smallNumbers, "smallNumbers");
+        // output(bigNumbers, "bigNumbers");
+        // output(smallNumbers, "smallNumbers");
         if (bigNumbers.size() > 1)
                 sortVector(bigNumbers);
         std::vector<int> mainChain = bigNumbers;
 
         binaryInsertVec(mainChain, smallNumbers[0], 0, mainChain.size());
-        size_t  jacobsthalSeqLength = smallNumbers.size();
-        // if (jacobsthalSeqLength > 0)
+        size_t  sequenceLength = smallNumbers.size();
+        // if (sequenceLength > 0)
         // {
-                std::vector<int> jacobsthalSeq = generateJacobsthalSeq(smallNumbers.size());
-                output(jacobsthalSeq, "jacob");
-                for (size_t i = 1; i < jacobsthalSeq.size(); i++)
-                        binaryInsertVec(mainChain, smallNumbers[jacobsthalSeq[i]], 0, mainChain.size());
+                std::vector<int> sequence = generateSeq(smallNumbers.size());
+                // output(sequence, "jacob");
+                for (size_t i = 1; i < sequence.size(); i++)
+                        if (sequence[i] < smallNumbers.size())
+                                binaryInsertVec(mainChain, smallNumbers[sequence[i]], 0, mainChain.size());
         // }
         if (vec.size() & 1)
                 binaryInsertVec(mainChain, vec[vec.size() - 1], 0, mainChain.size());
@@ -290,13 +263,13 @@ void    PmergeMe::sortDeque(std::deque<int> &dq)
                 sortDeque(bigNumbers);
         std::deque<int> mainChain = bigNumbers;
         binaryInsertDeq(mainChain, smallNumbers[0], 0, mainChain.size());
-        size_t  jacobsthalSeqLength = smallNumbers.size();
-        // if (jacobsthalSeqLength > 0) // ymken ghir zeyda
+        size_t  sequenceLength = smallNumbers.size();
+        // if (sequenceLength > 0) // ymken ghir zeyda
         // {
-                std::deque<int> jacobsthalSeq = generateJacobsthalSeqDeq(smallNumbers.size());
-                // outputdeq(jacobsthalSeq, "jacob");
+                std::deque<int> sequence = generateSeqDeq(smallNumbers.size());
+                // outputdeq(sequence, "jacob");
                 for (size_t i = 1; i < smallNumbers.size(); i++)
-                        binaryInsertDeq(mainChain, smallNumbers[jacobsthalSeq[i]], 0, mainChain.size());
+                        binaryInsertDeq(mainChain, smallNumbers[sequence[i]], 0, mainChain.size());
         // }
         if (dq.size() & 1)
                 binaryInsertDeq(mainChain, dq[dq.size() - 1], 0, mainChain.size());
