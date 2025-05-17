@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarim <skarim@student.42.fr>              #+#  +:+       +#+        */
+/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-04-29 16:45:59 by skarim            #+#    #+#             */
-/*   Updated: 2025-04-29 16:45:59 by skarim           ###   ########.fr       */
+/*   Created: 2025/04/29 16:45:59 by skarim            #+#    #+#             */
+/*   Updated: 2025/05/17 11:31:51 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int main(int ac, char **av)
     else
     {
         RPN r;
-        // std::string exp(av[1]);
         r.calculate(av[1]);
     }
 }
