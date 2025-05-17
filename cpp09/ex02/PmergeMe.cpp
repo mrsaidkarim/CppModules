@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:31:15 by skarim            #+#    #+#             */
-/*   Updated: 2025/05/15 21:46:37 by skarim           ###   ########.fr       */
+/*   Updated: 2025/05/17 14:49:13 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 const char *PmergeMe::ParsingException::what() const throw()
 {
-        return ("Invalid input (invalid positive integer sequence).");
+        return ("Error: Invalid input (invalid positive integer sequence).");
 }
 
 PmergeMe::PmergeMe()
 {
-        vec.clear();
-        dq.clear();
 }
 
 PmergeMe::PmergeMe(const PmergeMe &other)
@@ -92,30 +90,6 @@ void    makePairsDeque(const std::deque<int> &arr, std::deque<std::pair<int, int
         }
 }
 
-void    output(std::vector<int> &vec, std::string name)
-{
-        std::cout << "----------------" << name << "-------------\n";
-        for (size_t i = 0; i < vec.size(); i++)
-        {
-                std::cout << vec[i];
-                if (i != vec.size() - 1)
-                        std::cout << " ";
-        }
-        std::cout << "\n----------------------------------------\n";
-}
-
-void    outputdeq(std::deque<int> &dq, std::string name)
-{
-        std::cout << "----------------" << name << "-------------\n";
-        for (size_t i = 0; i < dq.size(); i++)
-        {
-                std::cout << dq[i];
-                if (i != dq.size() - 1)
-                        std::cout << " ";
-        }
-        std::cout << "\n----------------------------------------\n";
-}
-
 int sequence(int k)
 {
         if (k == 0)
@@ -125,16 +99,9 @@ int sequence(int k)
         return (int)pow(2, k) - sequence(k - 1);
 }
 
-// int jacobsthal( int n) {
-//         if (n == 0) return 0;
-//         if (n == 1) return 1;
-//         return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
-// }
-
 std::vector<int> generateSeq(int n)
 {
         std::vector<int> seq;
-        // std::cout << "call for " << n << std::endl;
         seq.push_back(0);
         if (n == 1)
                 return seq;
@@ -150,14 +117,12 @@ std::vector<int> generateSeq(int n)
                         seq.push_back(missed);
                 index++;
         }
-        // output(seq, "seq");
         return seq;
 }
 
 std::deque<int> generateSeqDeq(int n)
 {
         std::deque<int> seq;
-        // std::cout << "call for " << n << std::endl;
         seq.push_back(0);
         if (n == 1)
                 return seq;
@@ -173,10 +138,8 @@ std::deque<int> generateSeqDeq(int n)
                         seq.push_back(missed);
                 index++;
         }
-        // output(seq, "seq");
         return seq;
 }
-
 
 void    binaryInsertVec(std::vector<int> &mainChain, int ele, int left, int right)
 {
@@ -220,22 +183,15 @@ void    PmergeMe::sortVector(std::vector<int>   &vec)
                 bigNumbers.push_back(pairs[i].first);
                 smallNumbers.push_back(pairs[i].second);
         }
-        // output(bigNumbers, "bigNumbers");
-        // output(smallNumbers, "smallNumbers");
         if (bigNumbers.size() > 1)
                 sortVector(bigNumbers);
         std::vector<int> mainChain = bigNumbers;
 
         binaryInsertVec(mainChain, smallNumbers[0], 0, mainChain.size());
-        size_t  sequenceLength = smallNumbers.size();
-        // if (sequenceLength > 0)
-        // {
                 std::vector<int> sequence = generateSeq(smallNumbers.size());
-                // output(sequence, "jacob");
                 for (size_t i = 1; i < sequence.size(); i++)
-                        if (sequence[i] < smallNumbers.size())
+                        if (sequence[i] < (int)smallNumbers.size())
                                 binaryInsertVec(mainChain, smallNumbers[sequence[i]], 0, mainChain.size());
-        // }
         if (vec.size() & 1)
                 binaryInsertVec(mainChain, vec[vec.size() - 1], 0, mainChain.size());
         vec = mainChain;
@@ -246,10 +202,6 @@ void    PmergeMe::sortDeque(std::deque<int> &dq)
         std::deque<std::pair<int, int> > pairs;
 
         makePairsDeque(dq, pairs);
-        // for (auto it = pairs.begin(); it != pairs.end(); it++)
-        // {
-        //         std::cout << "(" << it->first << ", " << it->second << ") ";
-        // }
         std::deque<int> bigNumbers;
         std::deque<int> smallNumbers;
         for (size_t i = 0; i < pairs.size(); i++)
@@ -257,20 +209,14 @@ void    PmergeMe::sortDeque(std::deque<int> &dq)
                 bigNumbers.push_back(pairs[i].first);
                 smallNumbers.push_back(pairs[i].second);
         }
-        // outputdeq(bigNumbers, "bigNumbers");
-        // outputdeq(smallNumbers, "smallNumbers");
         if (bigNumbers.size() > 1)
                 sortDeque(bigNumbers);
         std::deque<int> mainChain = bigNumbers;
         binaryInsertDeq(mainChain, smallNumbers[0], 0, mainChain.size());
-        size_t  sequenceLength = smallNumbers.size();
-        // if (sequenceLength > 0) // ymken ghir zeyda
-        // {
                 std::deque<int> sequence = generateSeqDeq(smallNumbers.size());
-                // outputdeq(sequence, "jacob");
                 for (size_t i = 1; i < smallNumbers.size(); i++)
-                        binaryInsertDeq(mainChain, smallNumbers[sequence[i]], 0, mainChain.size());
-        // }
+                        if (sequence[i] < (int)smallNumbers.size())
+                                binaryInsertDeq(mainChain, smallNumbers[sequence[i]], 0, mainChain.size());
         if (dq.size() & 1)
                 binaryInsertDeq(mainChain, dq[dq.size() - 1], 0, mainChain.size());
         dq = mainChain;
@@ -294,31 +240,30 @@ void PmergeMe::parseInput(int ac, char *av[])
         }
 }
 
-void    displayTimeTaken(clock_t time, std::string container)
+void    displayTimeTaken(clock_t start, clock_t end, std::string container, int ac)
 {
-        std::cout << "Time to process a range of 5 elements with std::" << container << " : " << time * 1000000 << " us\n";
+        std::cout << "Time to process a range of " << ac - 1 <<  " elements with std::" << container << " : " << ((double)(end - start) / CLOCKS_PER_SEC) * 1000000 << " us\n";
 }
 
 void    PmergeMe::run(int ac, char *av[])
 {
         try
         {
-                clock_t timeVec, timeDq;
+                clock_t start, end;
                 parseInput(ac, av);
                 loadSequence(ac, av);
                 display(1);
                 if (ac > 2)
                 {
-                        timeVec = clock();
+                        start = clock();
                         sortVector(vec);
-                        timeVec = clock() - timeVec;
+                        end = clock();
                         display(0);
-                        displayTimeTaken(timeVec, "vector");
-                        timeDq = clock();
+                        displayTimeTaken(start, end, "vector", ac);
+                        start = clock();
                         sortDeque(dq);
-                        timeDq = clock() - timeDq;
-                        display(0);
-                        displayTimeTaken(timeDq, "deque");
+                        end = clock();
+                        displayTimeTaken(start, end, "deque", ac);
                 }
                 else
                         std::cout << "already sorted\n";
