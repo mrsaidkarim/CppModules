@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:31:11 by skarim            #+#    #+#             */
-/*   Updated: 2025/05/15 12:40:07 by skarim           ###   ########.fr       */
+/*   Updated: 2025/05/17 11:04:21 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ class PmergeMe
         void    parseInput(int ac, char *av[]);
         void    loadSequence(int ac, char *av[]);
         void    sortVector(std::vector<int> &vec);
-        void    display(bool before);
-        
         void    sortDeque(std::deque<int> &dq);
+        void    display(bool before);
 };
