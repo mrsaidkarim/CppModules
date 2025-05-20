@@ -10,3 +10,7 @@ This repository contains various modules that cover different concepts in C++ pr
 - [cpp04: Polymorphism](#cpp04-polymorphism)
 - [cpp05: Repetition and Exceptions](#cpp05-repetition-and-exceptions)
 - [cpp06: C++ casts](#cpp06-c++-casts)
+- [cpp07: C++ templates](#cpp07-C++-templates)
+- [cpp08: Templated containers, iterators, algorithms](#cpp08-Templated-containers,-iterators,-algorithms)
+- [cpp09: STL](#cpp09-STL)
+
